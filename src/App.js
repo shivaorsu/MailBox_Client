@@ -2,7 +2,7 @@ import React from 'react';
 import Login from './Pages/Login';
 import '../node_modules/react-bootstrap/dist/react-bootstrap'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
-import Welcome from './Pages/Welcom';
+import Welcome from './Pages/Welcome';
 import { Route,Switch } from 'react-router-dom';
 import './App.css'
  import { Fragment } from 'react';
