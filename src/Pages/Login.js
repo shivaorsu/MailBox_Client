@@ -1,16 +1,18 @@
-import { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
+import "./Login.css";
 import {
   Button,
   Card,
-  Row,
   Col,
   Container,
   FloatingLabel,
   Form,
+  Row,
 } from "react-bootstrap";
 import axios from "axios";
-import "./Login.css";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../Store/authReducer";
 
 const Login = () => {
   const emailInputRef = useRef();
@@ -18,7 +20,7 @@ const Login = () => {
   const confirmPasswordRef = useRef();
   const [isLogin, setIsLogin] = useState(false);
   const history = useHistory();
-
+ const dispatch = useDispatch()
   const formSubmitHandler = (e) => {
     e.preventDefault();
     let url;
@@ -32,11 +34,12 @@ const Login = () => {
 
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
-    //const confirmPassword = confirmPasswordRef.current.value;
+
     if (!isLogin) {
       const confirmPassword = confirmPasswordRef.current.value;
       if (password !== confirmPassword) {
         alert("Password did not match");
+        return;
       }
     }
     axios
@@ -48,10 +51,16 @@ const Login = () => {
       .then((response) => {
         if (response.status === 200) {
           const token = response.data.idToken;
+          const email = response.data.email
           localStorage.setItem("token", token);
+          localStorage.setItem('email',email)
+          dispatch(authActions.login({
+            token,
+            email
+          }))
           console.log("User has successfully signed up");
-          history.replace('/welcome')
-          console.log(response);
+          history.replace("/welcome");
+
         }
       })
       .catch((err) => {
@@ -97,23 +106,24 @@ const Login = () => {
                       />
                     </FloatingLabel>
                   </Form.Group>
-                  {!isLogin && <Form.Group className="mb-3" aria-setsize={5}>
-                  
-                    <FloatingLabel label="Confirm Password" className="mb-3">
-                      <Form.Control
-                        ref={confirmPasswordRef}
-                        type="password"
-                        placeholder="Confirm Password"
-                      />
-                    </FloatingLabel>
-                  </Form.Group>}
+                  {!isLogin && (
+                    <Form.Group className="mb-3" aria-setsize={5}>
+                      <FloatingLabel label="Confirm Password" className="mb-3">
+                        <Form.Control
+                          ref={confirmPasswordRef}
+                          type="password"
+                          placeholder="Confirm Password"
+                        />
+                      </FloatingLabel>
+                    </Form.Group>
+                  )}
                   <Form.Group>
                     <div className="d-grid gap-1">
                       <Button type="submit">
                         {isLogin ? "Login" : "Signup"}{" "}
                       </Button>
                     </div>
-                    {isLogin &&<p className="forgot">Forgot Password</p>}
+                    {isLogin && <p className="forgot">Forgot Password</p>}
                   </Form.Group>
                 </Form>
               </Card.Body>
