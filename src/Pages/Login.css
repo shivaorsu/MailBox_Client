@@ -1,0 +1,27 @@
+p span {
+    color: blue;
+    cursor: pointer;
+} 
+
+.outer {
+    /* border: 1px solid black; */
+    padding-left: 20rem;
+    margin-top: 5rem;
+    
+}
+/* .container {
+    border: 1px solid black;
+} */
+.row{
+    /* border: 1px solid black; */
+    padding-left: 10rem;
+}
+
+.forgot{
+    text-align: center;
+    cursor: pointer;
+    color: blue;
+}
+p{
+    text-align: center;
+}
