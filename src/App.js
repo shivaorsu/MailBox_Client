@@ -11,12 +11,16 @@ import Mailbox from "./Pages/Mailbox";
 import ComposeMail from "./Pages/ComposeMail";
 
 function App() {
+
   return (
     <Fragment>
+      
       <Switch>
-        <Route path="/login" exact>
+
+        <Route path="/" exact>
           <Login />
         </Route>
+       
         <Route path="/welcome">
           <Welcome />
         </Route>
@@ -30,6 +34,7 @@ function App() {
           <SentMail />
         </Route>
       </Switch>
+
     </Fragment>
   );
 }

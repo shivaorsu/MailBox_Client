@@ -1,12 +1,10 @@
 import React, { useRef, useState } from "react";
-//import { Editor } from "react-draft-wysiwyg";
-//import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import { useDispatch } from "react-redux";
 import { composeMail } from "../Store/compose-action";
-// import { useDispatch } from "react-redux";
-// import { composeMail } from "../../store/compose/compose-actions";
-// import Button from "../UI/Button";
+
 import classes from './Compose.module.css';
 
 
@@ -65,3 +63,7 @@ const ComposeMail = () => {
 };
 
 export default ComposeMail;
+
+
+
+
