@@ -19,6 +19,9 @@ const composeSlice = createSlice({
       state.recievedData = action.payload;
       console.log(state.recievedData);
     },
+    onRead(state,action){
+      
+    }
   },
 });
 

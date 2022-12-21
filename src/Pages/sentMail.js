@@ -1,41 +1,24 @@
-//import React, { useEffect } from "react";
-//import axios from "axios";
-import React from "react";
+
+import React,{useEffect} from "react";
 import { useSelector } from "react-redux";
-// import { Button } from "react-bootstrap";
-// import Container from "react-bootstrap";
-// import Row from "react-bootstrap";
-// import Col from "react-bootstrap";
+import { fetchSentMail } from "../Store/compose-action";
 import {
   Button,
   Col,
   Container,
   Row,
 } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import './sentMail.css';
 
 const SentMail = () => {
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const email = localStorage.getItem("email");
-  //     const mail = email.replace(/[^a-zA-Z0-9]/g, "");
-  //     const response = await axios.get(
-  //       `https://mail-box-382e9-default-rtdb.firebaseio.com/${mail}.json`
-  //     );
-  //     console.log(response.data);
-  //     let data = [];
-  //     for (const key in response.data) {
-  //       if (response.data[key].sent) {
-  //         data.push({
-  //           To: response.data[key].sent.To,
-  //           message: response.data[key].sent.message,
-  //         });
-  //       }
-  //     }
-  //     console.log(data);
-  //   };
-  //   fetchData();
-  // });
+  
   const sentData=useSelector((state)=>state.compose.sentData)
+
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(fetchSentMail())
+  },[dispatch])
   console.log(sentData)
 
   const sentList=sentData.map((data)=>{
@@ -49,11 +32,11 @@ const SentMail = () => {
             <Col>
               <div>Message:{data.message}</div>
             </Col>
-            <Col>
+            {/* <Col>
               <Button variant="danger" className="deletebtn">
                 Delete
               </Button>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </div>
