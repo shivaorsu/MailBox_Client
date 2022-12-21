@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const composeSlice = createSlice({
   name: "compose",
-  initialState: { sent: {} },
+  initialState: { sent: {}, sentData:[],recievedData:[]},
   reducers: {
     compose(state, action) {
       state.sent = {
@@ -10,6 +10,14 @@ const composeSlice = createSlice({
         message: action.payload.message,
       };
       console.log(state.sent);
+    },
+    fetchSentData(state, action) {
+      state.sentData = action.payload;
+      console.log(state.sentData);
+    },
+    fetchRecievedData(state, action) {
+      state.recievedData = action.payload;
+      console.log(state.recievedData);
     },
   },
 });

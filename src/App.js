@@ -5,12 +5,20 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import Welcome from "./Pages/Welcome";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import { Fragment } from "react";
+import { Fragment,useEffect } from "react";
 import SentMail from "./Pages/sentMail";
 import Mailbox from "./Pages/Mailbox";
 import ComposeMail from "./Pages/ComposeMail";
+import { fetchRecievedMail,fetchSentMail } from "./Store/compose-action";
+import { useDispatch } from "react-redux";
+import Inbox from "./Pages/Inbox";
 
 function App() {
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    dispatch(fetchRecievedMail);
+    dispatch(fetchSentMail)
+  })
 
   return (
     <Fragment>
@@ -25,13 +33,19 @@ function App() {
           <Welcome />
         </Route>
         <Route path="/compose">
+          <Mailbox/>
           <ComposeMail />
         </Route>
         <Route path="/mailbox">
           <Mailbox />
         </Route>
         <Route path="/sentmail">
+          <Mailbox/>
           <SentMail />
+        </Route>
+        <Route path='/inbox'>
+          <Mailbox/>
+          <Inbox/>
         </Route>
       </Switch>
 
