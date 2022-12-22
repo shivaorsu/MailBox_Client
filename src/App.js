@@ -9,17 +9,21 @@ import { Fragment } from "react";
 import SentMail from "./Pages/sentMail";
 import Mailbox from "./Pages/Mailbox";
 import ComposeMail from "./Pages/ComposeMail";
-//import { fetchRecievedMail,fetchSentMail } from "./Store/compose-action";
-//import { useDispatch } from "react-redux";
+import { fetchRecievedMail,fetchSentMail } from "./Store/compose-action";
+import { useDispatch } from "react-redux";
 import Inbox from "./Pages/Inbox";
 import MessageBox from "./Pages/MessageBox";
+import { useEffect } from "react";
 
 function App() {
-  // const dispatch=useDispatch();
-  // useEffect(()=>{
-  //   dispatch(fetchRecievedMail);
-  //   dispatch(fetchSentMail)
-  //})
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    setInterval(()=>{
+      dispatch(fetchSentMail());
+      dispatch(fetchRecievedMail);
+    },(2000))
+  },[dispatch])
+  
 
   return (
     <Fragment>
@@ -44,11 +48,11 @@ function App() {
           <Mailbox/>
           <SentMail />
         </Route>
-        <Route path='/inbox'exact>
+        <Route path="/inbox"exact>
           <Mailbox/>
           <Inbox/>
         </Route>
-        <Route path='/inbox/:email'>
+        <Route path="/inbox/:email">
           <Mailbox/>
           <MessageBox/>
         </Route>

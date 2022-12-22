@@ -11,7 +11,7 @@ const Mailbox = () => {
   const history = useHistory();
   const logoutHandler = () => {
     localStorage.clear();
-    history.replace("/login");
+    history.replace("/");
   };
   const recievedData = useSelector((state) => state.compose.recievedData);
   const unread = recievedData.reduce(

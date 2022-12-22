@@ -94,6 +94,8 @@ const Login = () => {
                         className="forminput"
                         type="email"
                         placeholder="name@example.com"
+                        autoComplete="on"
+                        required
                       />
                     </FloatingLabel>
                   </Form.Group>
@@ -103,6 +105,7 @@ const Login = () => {
                         ref={passwordInputRef}
                         type="password"
                         placeholder="Password"
+                        required
                       />
                     </FloatingLabel>
                   </Form.Group>

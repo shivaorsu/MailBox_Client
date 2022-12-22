@@ -110,3 +110,31 @@ export const fetchRecievedMail = () => {
     dispatch(composeActions.fetchRecievedData(data));
   };
 };
+
+export const deleteMessage=(id)=>{
+  return async(dispatch)=>{
+    const email=localStorage.getItem("email");
+    const mail=email.replace(/[^a-zA-Z0-9]/g, "");
+    const response= await axios.delete(
+      `https://mail-box-382e9-default-rtdb.firebaseio.com/${mail}/${id}.json`
+    );
+    if (response.status===200){
+      console.log(response);
+      dispatch(composeActions.deleteInbox(id))
+    }
+  }
+
+};
+export const deleteSentMessage = (id) => {
+  return async (dispatch) => {
+    const email = localStorage.getItem("email");
+    const mail = email.replace(/[^a-zA-Z0-9]/g, "");
+    const response = await axios.delete(
+      `https://mail-box-382e9-default-rtdb.firebaseio.com/${mail}/${id}.json`
+    );
+    if (response.status === 200) {
+      console.log(response);
+      dispatch(composeActions.deleteSentbox(id));
+    }
+  };
+};
