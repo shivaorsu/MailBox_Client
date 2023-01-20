@@ -7,7 +7,7 @@ export const composeMail = (mail, message) => {
     const email = localStorage.getItem("email");
     const short = email.replace(/[^a-zA-Z0-9]/g, "");
     const sent = await axios.post(
-      `https://mail-box-382e9-default-rtdb.firebaseio.com/${short}.json`,
+      `https://mailboxclient-71305-default-rtdb.firebaseio.com/${short}.json`,
       {
         sent: { To: mail, message, read: false },
       }
@@ -23,7 +23,7 @@ export const composeMail = (mail, message) => {
     }
     const shorts = mail.replace(/[^a-zA-Z0-9]/g, "");
     await axios.post(
-      `https://mail-box-382e9-default-rtdb.firebaseio.com/${shorts}.json`,
+      `https://mailboxclient-71305-default-rtdb.firebaseio.com/${shorts}.json`,
       {
         inbox: { From: email, message, read: false },
       }
@@ -38,7 +38,7 @@ export const readMessage=(data)=>{
     const email = localStorage.getItem("email");
     const short = email.replace(/[^a-zA-Z0-9]/g, "");
       const sent = await axios.put(
-        `https://mail-box-382e9-default-rtdb.firebaseio.com/${short}/${data.id}/inbox.json`,
+        `https://mailboxclient-71305-default-rtdb.firebaseio.com/${short}/${data.id}/inbox.json`,
         {
           From:data.From,
           message:data.message,
@@ -61,7 +61,7 @@ export const fetchSentMail = () => {
       const email = localStorage.getItem("email");
       const mail = email.replace(/[^a-zA-Z0-9]/g, "");
       const response = await axios.get(
-        `https://mail-box-382e9-default-rtdb.firebaseio.com/${mail}.json`
+        `https://mailboxclient-71305-default-rtdb.firebaseio.com/${mail}.json`
       );
       console.log(response.data);
       let data = [];
@@ -89,7 +89,7 @@ export const fetchRecievedMail = () => {
       const email = localStorage.getItem("email");
       const mail = email.replace(/[^a-zA-Z0-9]/g, "");
       const response = await axios.get(
-        `https://mail-box-382e9-default-rtdb.firebaseio.com/${mail}.json`
+        `https://mailboxclient-71305-default-rtdb.firebaseio.com/${mail}.json`
       );
       console.log(response.data);
       let data = [];
@@ -116,7 +116,7 @@ export const deleteMessage=(id)=>{
     const email=localStorage.getItem("email");
     const mail=email.replace(/[^a-zA-Z0-9]/g, "");
     const response= await axios.delete(
-      `https://mail-box-382e9-default-rtdb.firebaseio.com/${mail}/${id}.json`
+      `https://mailboxclient-71305-default-rtdb.firebaseio.com/${mail}/${id}.json`
     );
     if (response.status===200){
       console.log(response);
@@ -130,7 +130,7 @@ export const deleteSentMessage = (id) => {
     const email = localStorage.getItem("email");
     const mail = email.replace(/[^a-zA-Z0-9]/g, "");
     const response = await axios.delete(
-      `https://mail-box-382e9-default-rtdb.firebaseio.com/${mail}/${id}.json`
+      `https://mailboxclient-71305-default-rtdb.firebaseio.com/${mail}/${id}.json`
     );
     if (response.status === 200) {
       console.log(response);

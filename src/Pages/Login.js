@@ -26,10 +26,10 @@ const Login = () => {
     let url;
     if (isLogin) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCw_7pof-yrknu5OzwNxXDNS34jKwl8rMo";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDJKE6r3H_2s0lMK9vWaKniHaafhiSqmrM";
     } else {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCw_7pof-yrknu5OzwNxXDNS34jKwl8rMo";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDJKE6r3H_2s0lMK9vWaKniHaafhiSqmrM";
     }
 
     const email = emailInputRef.current.value;
